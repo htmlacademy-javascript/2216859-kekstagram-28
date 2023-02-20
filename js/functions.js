@@ -1,36 +1,85 @@
 //Проверка длины строки
-function checkLenght (string, minLength) {
-  return (string.length >= minLength) ? 'строка проходит по длине' : 'строка не проходит';
-}
+const checkLenght = (string, length) => string.length >= length;
 
 //Проверка на палиндром
-function checkPalindrome (string) {
+function isPalindrom (string) {
   string = string.toLowerCase().replace(/ /g,'');
   const lastIndex = string.length - 1;
   for (let i = 0; i < string.length / 2; i++) {
     if (string[i] == string[lastIndex - i]) {
-      return console.log('Это палиндром');
+      return 'Это палиндром';
     }
-    return console.log('Это не палиндром');
+    return 'Это не палиндром';
   }
 }
 
-//Извлечение чисел из строки
-function getNumbers (string) {
+const isPalindrome = (string) => {
+  const tempString = string
+    .toLowerCase()
+    .replaceAll(' ', ''); //заменяем  все пробелы на пустой символ, тем самым избавляясь от пробелов
+
+  let reverseString ='';
+  for (let i = tempString.length - 1; i >= 0; i--) {
+    reverseString += tempString.at(i);
+    return tempString === reverseString;
+  }
+}
+
+//Извлечение цифр из строки
+//Вариант №1
+function extractNumber (string) {
   string = String(string);
   string = string.replace(/[^0-9]/g, '');
   if (string.length !== 0) {
-  return string;
+  return parseInt(string);
   }
   return NaN;
 }
 
+//Вариант №2
+const extrNumber = (string) => {
+  if (typeof string === 'number') {
+    return string;
+  }
+  let result = '';
+  for (let i = 0; i < string.length; i++) {
+    if (!Number.isNaN(parseInt(string.at(i), 10)))
+    result += string.at(i);
+  }
+  return parseInt(result, 10);
+}
+
 //Функциия с 3 параметрами
-function noPadStart(string, targetLength, padString) {
+//Вариант №1 (не выполняет одно из условий)
+function noPad (string, targetLength, extraString) {
+  let extraLenght = targetLength - string.length;
   if (string.length > targetLength) {
     return string;
   }
-  let padString = padString.repeat(targetLength - string.length);
-  let newString = padString.slice(0, targetLength - string.length) + string;
+  var extraString = extraString.repeat(extraLenght);
+  var newString = extraString.slice(0, extraLenght) + string;
   return newString;
+}
+
+
+//Вариант №2 Полифил
+const myPadStart = (string, minLength, pad) => {
+  const actualPad = minLength - string.length;
+  if (actualPad <= 0) {
+    return string;
+  }
+  const tempPad = pad.slice(0, actualPad % pad.length);
+  const tempRepeat = pad.repeat(actualPad / pad.length);
+  return tempPad  + tempRepeat + string;
+}
+
+//Вариант №3 через циклы
+const PadStart = (string, minLength, pad) => {
+  let result = string;
+  while (result.length < minLength) {
+    const newResultLenght = result.length + pad.length;
+    const actualPad = newResultLength <= minLength ? pad : pad.slice(0, minLength - newResultLenght);
+    result = actualPad + result;
+  }
+  return result;
 }
