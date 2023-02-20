@@ -1,7 +1,4 @@
 //Проверка длины строки
-let string;
-let minLength;
-
 function checkLenght (string, minLength) {
   return (string.length >= minLength) ? 'строка проходит по длине' : 'строка не проходит';
 }
@@ -29,3 +26,11 @@ function getNumbers (string) {
 }
 
 //Функциия с 3 параметрами
+function noPadStart(string, targetLength, padString) {
+  if (string.length > targetLength) {
+    return string;
+  }
+  let padString = padString.repeat(targetLength - string.length);
+  let newString = padString.slice(0, targetLength - string.length) + string;
+  return newString;
+}
