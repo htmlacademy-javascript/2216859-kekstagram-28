@@ -19,13 +19,13 @@ function checkPalindrome (string) {
 }
 
 //Извлечение чисел из строки
-
-
 function getNumbers (string) {
   string = String(string);
   string = string.replace(/[^0-9]/g, '');
   if (string.length !== 0) {
-  return console.log(string);
+  return string;
   }
-  return console.log('NaN');
+  return NaN;
 }
+
+//Функциия с 3 параметрами
