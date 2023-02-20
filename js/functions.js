@@ -31,7 +31,7 @@ const extractNumber = (string) => {
   string = String(string);
   string = string.replace(/[^0-9]/g, '');
   if (string.length !== 0) {
-    return parseInt (string);
+    return parseInt (string, 10);
   }
   return NaN;
 };
