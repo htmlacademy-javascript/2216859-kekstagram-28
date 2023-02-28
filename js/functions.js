@@ -6,7 +6,7 @@ const isPalindrome = (string) => {
 };
 
 const extractNumber = (string) => {
-  string = String(string).replace(/[^0-9]/g, '');
+  string = String(string).replace(/\D/g, '');
   return parseInt(string, 10);
 };
 
