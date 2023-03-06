@@ -1,21 +1,19 @@
 import { createPictures } from './data.js';
-
-const userFeed = document.querySelector('.pictures');
-userFeed.querySelector('.pictures__title').classList.remove('visually-hidden');
-
 const thumbnailsList = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content;
 
-const generatePicture = createPictures();
+const pictureData = createPictures();
 
-const userFeedFragment = document.createDocumentFragment();
-
-generatePicture.forEach(({ url, likes, comments }) => {
+const createPicture = ({ url, likes, comments }) => {
   const thumbnail = thumbnailTemplate.cloneNode(true);
   thumbnail.querySelector('.picture__img').src = url;
   thumbnail.querySelector('.picture__likes').textContent = likes;
   thumbnail.querySelector('.picture__comments').textContent = comments.length;
-  userFeedFragment.appendChild(thumbnail);
-});
+  return thumbnail;
+};
 
-thumbnailsList.appendChild(userFeedFragment);
+const renderPictures = () => {
+  pictureData.forEach((item) => thumbnailsList.appendChild(createPicture(item)));
+};
+
+export { renderPictures };
