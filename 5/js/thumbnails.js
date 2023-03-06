@@ -1,4 +1,4 @@
-import { createPictures } from './js/data.js';
+import { createPictures } from './data.js';
 
 const userFeed = document.querySelector('.pictures');
 userFeed.querySelector('.pictures__title').classList.remove('visually-hidden');
