@@ -1,3 +1,3 @@
-import { createPicture } from './js/data.js';
+import { renderPictures } from './thumbnails.js';
 
-console.log(createPicture);
+renderPictures();
