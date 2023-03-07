@@ -1,17 +1,20 @@
 import { createPictures } from './data.js';
-import { openModal } from './bigpicture.js';
+import { openBigPicture } from './bigpicture.js';
 
 const thumbnailsList = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content;
-
 const pictureData = createPictures();
 
-const createPicture = ({ url, likes, comments }) => {
+
+const createPicture = (picture) => {
   const thumbnail = thumbnailTemplate.cloneNode(true);
-  thumbnail.querySelector('.picture__img').src = url;
-  thumbnail.querySelector('.picture__likes').textContent = likes;
-  thumbnail.querySelector('.picture__comments').textContent = comments.length;
-  thumbnail.querySelector('.picture').addEventListener('click', openModal);
+  thumbnail.querySelector('.picture__img').src = picture.url;
+  thumbnail.querySelector('.picture__img').alt = picture.description;
+  thumbnail.querySelector('.picture__likes').textContent = picture.likes;
+  thumbnail.querySelector('.picture__comments').textContent = picture.comments.length;
+  thumbnail.querySelector('.picture__img').addEventListener('click', () => {
+    openBigPicture(picture);
+  });
   return thumbnail;
 };
 
