@@ -1,5 +1,7 @@
 import { isEscapeKey } from './util.js';
 
+const defaultCommentsNumber = 1;
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCloseBtn = bigPicture.querySelector('.big-picture__cancel');
 const bigPicutreImage = bigPicture.querySelector('.big-picture__img img');
@@ -8,9 +10,11 @@ const pictureCommentsNumber = bigPicture.querySelector('.comments-count');
 const pictureCaption = bigPicture.querySelector('.social__caption');
 
 const socialCommentsList = bigPicture.querySelector('.social__comments');
-const socialComment = socialCommentsList.querySelector('.social__comment');
+const socialComment = socialCommentsList.querySelector('.social__comment').content;
 const commentCount = bigPicture.querySelector('.social__comment-count');
 const commentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
+// socialCommentsList.innerHTML = '';
+
 
 const hideObjects = () => {
   commentCount.classList.add('hidden');
@@ -29,12 +33,16 @@ const fillBigPicture = (picture) => {
   pictureCaption.textContent = picture.description;
 };
 
-const createComment = (comment) => {
+
+const getComment = (comment) => {
   const commentElement = socialComment.cloneNode(true);
-  commentElement.querySelector('.social__picture').src = comment.url;
-  commentElement.querySelector('.social__picture').alt = comment.name;
-  commentElement.querySelector('.social__text').textContent = comment.message;
-  console.log(commentElement);
+  const commentAvatar = commentElement.querySelector('.social__picture');
+  const commentMessage = commentElement.querySelector('.social__text');
+
+  commentAvatar.src = comment.avatar;
+  commentAvatar.alt = comment.name;
+  commentMessage.textContent = comment.message;
+
   return commentElement;
 };
 
@@ -60,4 +68,4 @@ const openBigPicture = (data) => {
   });
 };
 
-export { openBigPicture, closeBigPicture, hideObjects, createComment };
+export { openBigPicture, closeBigPicture, hideObjects, getComment };
