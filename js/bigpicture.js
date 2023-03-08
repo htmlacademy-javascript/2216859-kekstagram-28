@@ -10,10 +10,10 @@ const pictureCommentsNumber = bigPicture.querySelector('.comments-count');
 const pictureCaption = bigPicture.querySelector('.social__caption');
 
 const socialCommentsList = bigPicture.querySelector('.social__comments');
-const socialComment = socialCommentsList.querySelector('.social__comment').content;
+const socialComment = socialCommentsList.querySelector('.social__comment');
 const commentCount = bigPicture.querySelector('.social__comment-count');
 const commentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
-// socialCommentsList.innerHTML = '';
+socialCommentsList.innerHTML = '';
 
 
 const hideObjects = () => {
