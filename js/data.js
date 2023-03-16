@@ -1,4 +1,4 @@
-import { getRandomArrayElement, getRandomInteger } from './util';
+import { getRandomArrayElement, getRandomInteger } from './util.js';
 
 const NAMES = ['Павел', 'Роман', 'Ирина', 'Мария', 'Егор', 'Рита'];
 
@@ -48,7 +48,7 @@ const createPicture = () => {
     url: `photos/${pictureId}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomInteger(15, 250),
-    comments: Array.from({ length: getRandomInteger(1, 3) }, createComment),
+    comments: Array.from({ length: getRandomInteger(1, 10) }, createComment),
   };
   pictureId += 1;
   return picture;
