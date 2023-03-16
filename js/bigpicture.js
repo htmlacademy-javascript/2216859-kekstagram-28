@@ -12,10 +12,11 @@ const pictureCaption = bigPicture.querySelector('.social__caption');
 const socialCommentsList = bigPicture.querySelector('.social__comments');
 const socialComment = socialCommentsList.querySelector('.social__comment');
 
-let commentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
+const commentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
 const commentCount = bigPicture.querySelector('.social__comment-count');
 let commentsLength = 0;
 let shownComments = 0;
+let currentComments = [];
 
 const onBigPictureClick = (event) => {
   event.preventDefault();
@@ -56,6 +57,7 @@ const fillCommentCount = () => {
 const fillComments = (data) => {
   socialCommentsList.innerHTML = '';
   data.forEach((item) => socialCommentsList.appendChild(createComment(item)));
+
 };
 
 const showComments = (comments) => {
@@ -68,7 +70,10 @@ const showComments = (comments) => {
   } else {
     commentLoaderBtn.classList.remove('hidden');
   }
+
 };
+
+commentLoaderBtn.addEventListener('click', showComments);
 
 const openBigPicture = (data) => {
   bigPicture.classList.remove('hidden');
