@@ -19,7 +19,7 @@ const onFormClick = (event) => {
 };
 
 const onDocumentKeyDown = (event) => {
-  if (isEscapeKey(event)) {
+  if (isEscapeKey(event) && !event.target.closest('.text__description') && !event.target.closest('.text__hashtags')) {
     event.preventDefault();
     closeForm();
   }

@@ -28,7 +28,7 @@ const onCommentLoaderBtnClick = (event) => {
 };
 
 const onDocumentKeyDown = (event) => {
-  if (isEscapeKey(event)) {
+  if (isEscapeKey(event) && !event.target.closest('.social__footer-text')) {
     event.preventDefault();
     closeBigPicture();
   }
