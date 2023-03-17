@@ -36,8 +36,10 @@ const closeForm = () => {
   document.body.classList.remove('modal-open');
   closeFormBtn.removeEventListener('click', onFormClick);
   document.removeEventListener('keydown', onDocumentKeyDown);
-  uploadFileBtn.removeEventListener('change', onFormClick);
+  uploadFileBtn.value = '';
 };
+
+
 
 export { openUserForm };
 
