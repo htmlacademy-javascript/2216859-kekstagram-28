@@ -27,7 +27,7 @@ const checkArrayLength = () => {
   return false;
 };
 
-const checkHashtagLength = () => {
+const checkHashtagConsist = () => {
   const hashtagsValue = hashtagInput.value;
   const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
   for (let i = 0; i < hashtagsArray.length; i++) {
@@ -38,8 +38,18 @@ const checkHashtagLength = () => {
   }
 };
 
+// const checkHashtagDuplicate = () => {
+//   const hashtagsValue = hashtagInput.value;
+//   const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
+//   if (new Set(hashtagsArray).size === hashtagsArray.length) {
+//     return true;
+//   }
+//   return false;
+// };
+
 pristine.addValidator(hashtagInput, checkArrayLength);
-pristine.addValidator(hashtagInput, checkHashtagLength);
+pristine.addValidator(hashtagInput, checkHashtagConsist);
+// pristine.addValidator(hashtagInput, checkHashtagDuplicate);
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
