@@ -31,7 +31,7 @@ const checkHashtagLength = () => {
   const hashtagsValue = hashtagInput.value;
   const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
   for (let i = 0; i < hashtagsArray.length; i++) {
-    if (hashtagsArray[i].length < MAX_HASHTAG_LENGTH && hashtagsArray[i].length >= 2) {
+    if (HASHTAG.test(hashtagsArray[i])) {
       return true;
     }
     return false;
