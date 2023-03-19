@@ -1,7 +1,6 @@
 import { isEscapeKey } from './util.js';
 
 const MAX_HASHTAGS = 5;
-const MAX_HASHTAG_LENGTH = 20;
 const MAX_COMMENT_LENGTH = 140;
 const HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 
@@ -38,27 +37,27 @@ const checkHashtagConsist = () => {
   }
 };
 
-// const checkHashtagDuplicate = () => {
-//   const hashtagsValue = hashtagInput.value;
-//   const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
-//   if (new Set(hashtagsArray).size === hashtagsArray.length) {
-//     return true;
-//   }
-//   return false;
-// };
+const checkHashtagDuplicate = () => {
+  const hashtagsValue = hashtagInput.value;
+  const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
+  if (new Set(hashtagsArray).size === hashtagsArray.length) {
+    return true;
+  }
+  return false;
+};
 
-pristine.addValidator(hashtagInput, checkArrayLength);
-pristine.addValidator(hashtagInput, checkHashtagConsist);
-// pristine.addValidator(hashtagInput, checkHashtagDuplicate);
+pristine.addValidator(hashtagInput, checkArrayLength, 'Максимальное количество хэштегов 5', false);
+pristine.addValidator(hashtagInput, checkHashtagConsist, 'Использованы недопустимые символы или неверная длина', false);
+pristine.addValidator(hashtagInput, checkHashtagDuplicate, 'Хэштеги повторяются', false);
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const isValid = pristine.validate();
   if (isValid) {
-    console.log('+');
+    form.submut();
   } else {
-    console.log('-');
+    event.preventDefault();
   }
 });
 
