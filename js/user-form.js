@@ -55,9 +55,9 @@ form.addEventListener('submit', (event) => {
 
   const isValid = pristine.validate();
   if (isValid) {
-    form.submut();
+    console.log('+');
   } else {
-    event.preventDefault();
+    console.log('-');
   }
 });
 
