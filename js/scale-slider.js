@@ -2,8 +2,8 @@ const SCALE_STEP = 25;
 
 const userForm = document.querySelector('.img-upload__overlay');
 const scaleControl = userForm.querySelector('.scale__control--value');
-const scaleControlPlus = userForm.querySelector('.scale__control--bigger');
-const scaleControlMinus = userForm.querySelector('.scale__control--smaller');
+const controlPlusButton = userForm.querySelector('.scale__control--bigger');
+const controlMinusButton = userForm.querySelector('.scale__control--smaller');
 const imageUploadPreview = userForm.querySelector('.img-upload__preview img');
 
 const effectSlider = userForm.querySelector('.effect-level__slider');
@@ -13,13 +13,13 @@ const onPlusClick = (event) => {
   event.preventDefault();
   increaseScale();
 };
-scaleControlPlus.addEventListener('click', onPlusClick);
+controlPlusButton.addEventListener('click', onPlusClick);
 
 const onMinusClick = (event) => {
   event.preventDefault();
   decreaseScale();
 };
-scaleControlMinus.addEventListener('click', onMinusClick);
+controlMinusButton.addEventListener('click', onMinusClick);
 
 const setScale = function (value) {
   scaleControl.value = value;
