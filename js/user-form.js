@@ -1,6 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { addValidator } from './validation.js';
 
+const form = document.querySelector('#upload-select-image');
 const userForm = document.querySelector('.img-upload__overlay');
 const uploadFileInput = document.querySelector('#upload-file');
 const closeFormBtn = document.querySelector('#upload-cancel');
@@ -39,7 +40,7 @@ const closeForm = () => {
   document.body.classList.remove('modal-open');
   closeFormBtn.removeEventListener('click', onFormCloseButtonClick);
   document.removeEventListener('keydown', onDocumentKeydown);
-  uploadFileButton.value = '';
+  form.reset();
 };
 
 export { addUserFormAction };
