@@ -1,4 +1,5 @@
 import { isEscapeKey } from './util.js';
+import { setScale } from './scale-slider.js';
 
 const COMMENT_COUNTER = 5;
 
@@ -80,6 +81,7 @@ const openBigPicture = (data) => {
   commentLoaderBtn.addEventListener('click', onCommentLoaderBtnClick);
   fillBigPicture(data);
   fillComments();
+  setScale();
 };
 
 const closeBigPicture = () => {
