@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { addValidator } from './validation.js';
+import { addValidator, checkValidity } from './validation.js';
 
 const form = document.querySelector('#upload-select-image');
 const userForm = document.querySelector('.img-upload__overlay');
@@ -26,6 +26,16 @@ const onDocumentKeydown = (event) => {
 const addUserFormAction = () => {
   addValidator();
   uploadFileInput.addEventListener('change', onUploadFileInputChange);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const isValid = checkValidity();
+    if (isValid) {
+      console.log('+');
+    } else {
+      console.log('-');
+    }
+  });
 };
 
 const openForm = () => {

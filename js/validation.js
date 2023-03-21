@@ -9,34 +9,19 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__error-text',
 });
 
-
-const checkArrayLength = () => {
-  const hashtagsValue = hashtagInput.value;
-  const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
-  if (hashtagsArray.length <= MAX_HASHTAGS) {
-    return true;
-  }
-  return false;
-};
+const preparingValue = () => hashtagInput.value.toLowerCase().trim().split(' ');
+const checkArrayLength = () => preparingValue().length <= MAX_HASHTAGS;
+const checkHashtagDuplicate = () => new Set(preparingValue()).size === preparingValue().length;
 
 const checkHashtagConsist = () => {
-  const hashtagsValue = hashtagInput.value;
-  const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
-  for (let i = 0; i < hashtagsArray.length; i++) {
-    if (HASHTAG.test(hashtagsArray[i])) {
-      return true;
-    }
-    return false;
+  const hashtagsArray = preparingValue();
+  const isValidTag = (tag) => HASHTAG.test(tag);
+  let flag = true;
+  hashtagsArray.forEach(isValidTag);
+  if (!hashtagsArray.every(isValidTag)) {
+    flag = false;
   }
-};
-
-const checkHashtagDuplicate = () => {
-  const hashtagsValue = hashtagInput.value;
-  const hashtagsArray = hashtagsValue.toLowerCase().trim().split(' ');
-  if (new Set(hashtagsArray).size === hashtagsArray.length) {
-    return true;
-  }
-  return false;
+  return flag;
 };
 
 const addValidator = () => {
@@ -45,16 +30,6 @@ const addValidator = () => {
   pristine.addValidator(hashtagInput, checkHashtagDuplicate, 'Хэштеги повторяются', false);
 };
 
+const checkValidity = () => pristine.validate();
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const isValid = pristine.validate();
-  if (isValid) {
-    console.log('+');
-  } else {
-    console.log('-');
-  }
-});
-
-export { addValidator };
+export { addValidator, checkValidity };
