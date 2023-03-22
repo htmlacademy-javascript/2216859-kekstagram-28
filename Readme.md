@@ -1,7 +1,10 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Ярослав Емельяненко](https://up.htmlacademy.ru/javascript/28/user/2216859).
-* Наставник: [Павел Позняк] (https://htmlacademy.ru/profile/id907403).
+- Студент: [Ярослав Емельяненко](https://up.htmlacademy.ru/javascript/28/user/2216859).
+  <<<<<<<<< Temporary merge branch 1
+- # Наставник: .
+- Наставник: [Павел Позняк] (https://htmlacademy.ru/profile/id907403).
+  > > > > > > > > > Temporary merge branch 2
 
 ---
 
