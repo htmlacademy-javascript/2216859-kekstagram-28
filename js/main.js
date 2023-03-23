@@ -1,5 +1,5 @@
 import { renderPictures } from './thumbnails.js';
-import { openUserForm } from './user-form.js';
+import { addUserFormAction } from './user-form.js';
 
 renderPictures();
-openUserForm();
+addUserFormAction();
