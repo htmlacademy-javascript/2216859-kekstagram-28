@@ -12,7 +12,10 @@ noUiSlider.create(effectSlider, {
   connect: 'lower',
 });
 
-effectSlider.noUiSlider.on('update', () => {
-  effectValue.value = effectSlider.noUiSlider.get();
-});
+const addSlider = () => {
+  effectSlider.noUiSlider.on('update', () => {
+    effectValue.value = effectSlider.noUiSlider.get();
+  });
+};
 
+export { addSlider };
