@@ -1,6 +1,6 @@
-const userForm = document.querySelector('.img-upload__overlay');
-const effectSlider = userForm.querySelector('.effect-level__slider');
-const effectValue = userForm.querySelector('.effect-level__value');
+
+const effectSlider = document.querySelector('.effect-level__slider');
+const effectValue = document.querySelector('.effect-level__value');
 
 noUiSlider.create(effectSlider, {
   range: {
@@ -12,10 +12,7 @@ noUiSlider.create(effectSlider, {
   connect: 'lower',
 });
 
-const addSlider = () => {
-  effectSlider.noUiSlider.on('update', () => {
-    effectValue.value = effectSlider.noUiSlider.get();
-  });
-};
+effectSlider.noUiSlider.on('update', () => {
+  effectValue.value = effectSlider.noUiSlider.get();
+});
 
-export { addSlider };
