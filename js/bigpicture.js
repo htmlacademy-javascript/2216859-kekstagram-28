@@ -17,22 +17,6 @@ const commentCount = bigPicture.querySelector('.social__comment-count');
 let shownComments = 0;
 let comments = [];
 
-const onBigPictureClick = (event) => {
-  event.preventDefault();
-  closeBigPicture();
-};
-
-const onCommentLoaderBtnClick = (event) => {
-  event.preventDefault();
-  fillComments();
-};
-
-const onDocumentKeyDown = (event) => {
-  if (isEscapeKey(event) && !event.target.closest('.social__footer-text')) {
-    event.preventDefault();
-    closeBigPicture();
-  }
-};
 
 const createComment = (data) => {
   const comment = socialComment.cloneNode(true);
@@ -44,17 +28,6 @@ const createComment = (data) => {
   commentMessage.textContent = data.message;
 
   return comment;
-};
-
-const fillBigPicture = (picture) => {
-  bigPictureImage.src = picture.url;
-  pictureLikes.textContent = picture.likes;
-  pictureCommentsNumber.textContent = picture.comments.length;
-  pictureCaption.textContent = picture.description;
-};
-
-const fillCommentCount = () => {
-  commentCount.innerHTML = `${shownComments} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
 
 const fillComments = () => {
@@ -69,6 +42,22 @@ const fillComments = () => {
     commentLoaderBtn.classList.remove('hidden');
   }
 };
+
+const onCommentLoaderBtnClick = (event) => {
+  event.preventDefault();
+  fillComments();
+};
+
+const fillBigPicture = (picture) => {
+  bigPictureImage.src = picture.url;
+  pictureLikes.textContent = picture.likes;
+  pictureCommentsNumber.textContent = picture.comments.length;
+  pictureCaption.textContent = picture.description;
+};
+
+function fillCommentCount() {
+  commentCount.innerHTML = `${shownComments} из <span class="comments-count">${comments.length}</span> комментариев`;
+}
 
 const openBigPicture = (data) => {
   comments = data.comments;
@@ -91,5 +80,17 @@ const closeBigPicture = () => {
   comments = [];
   shownComments = 0;
 };
+
+function onDocumentKeyDown(event) {
+  if (isEscapeKey(event) && !event.target.closest('.social__footer-text')) {
+    event.preventDefault();
+    closeBigPicture();
+  }
+}
+
+function onBigPictureClick(event) {
+  event.preventDefault();
+  closeBigPicture();
+}
 
 export { openBigPicture };
