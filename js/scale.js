@@ -33,7 +33,9 @@ const onMinusButtonClick = () => {
 
 const resetScale = () => scaleImage(DEFAULT_SCALE);
 
-controlPlusButton.addEventListener('click', onPlusButtonClick);
-controlMinusButton.addEventListener('click', onMinusButtonClick);
+const addScale = () => {
+  controlPlusButton.addEventListener('click', onPlusButtonClick);
+  controlMinusButton.addEventListener('click', onMinusButtonClick);
+};
 
-export { resetScale };
+export { addScale, resetScale };
