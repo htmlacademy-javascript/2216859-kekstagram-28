@@ -53,6 +53,7 @@ function openForm() {
 function closeForm() {
   userForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
+
   closeFormButton.removeEventListener('click', onFormCloseButtonClick);
   document.removeEventListener('keydown', onDocumentKeydown);
   form.reset();
@@ -61,3 +62,4 @@ function closeForm() {
 }
 
 export { addUserFormAction };
+
