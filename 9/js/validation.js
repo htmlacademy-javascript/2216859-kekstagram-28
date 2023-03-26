@@ -21,6 +21,7 @@ const checkHashtagConsist = () => {
       flag = false;
     }
   });
+
   return flag;
 };
 
