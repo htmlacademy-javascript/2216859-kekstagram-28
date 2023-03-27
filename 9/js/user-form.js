@@ -29,9 +29,9 @@ const onAddFormSubmit = (event) => {
   event.preventDefault();
   const isValid = checkValidity();
   if (isValid) {
-    console.log('+');
+    // console.log('+');
   } else {
-    console.log('-');
+    // console.log('-');
   }
 };
 
