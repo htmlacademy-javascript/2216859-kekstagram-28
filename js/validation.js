@@ -14,13 +14,14 @@ const checkArrayLength = () => preparingValue().length <= MAX_HASHTAGS;
 const checkHashtagDuplicate = () => new Set(preparingValue()).size === preparingValue().length;
 
 const checkHashtagConsist = () => {
-  const hashtagsArray = preparingValue();
-  const isValidTag = (tag) => HASHTAG.test(tag);
   let flag = true;
-  hashtagsArray.forEach(isValidTag);
-  if (!hashtagsArray.every(isValidTag)) {
-    flag = false;
-  }
+  const hashtagsArray = preparingValue();
+  hashtagsArray.forEach((item) => {
+    if (!HASHTAG.test(item)) {
+      flag = false;
+    }
+  });
+
   return flag;
 };
 
