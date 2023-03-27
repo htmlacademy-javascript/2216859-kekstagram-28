@@ -1,9 +1,7 @@
-import { createPictures } from './data.js';
 import { openBigPicture } from './bigpicture.js';
 
 const thumbnailsList = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const pictureData = createPictures();
 
 
 const createPicture = (picture) => {
@@ -18,8 +16,8 @@ const createPicture = (picture) => {
   return thumbnail;
 };
 
-const renderPictures = () => {
-  pictureData.forEach((item) => thumbnailsList.appendChild(createPicture(item)));
+const renderPictures = (pictures) => {
+  pictures.forEach((item) => thumbnailsList.appendChild(createPicture(item)));
 };
 
 export { renderPictures };
