@@ -1,5 +1,5 @@
 import { addUserFormAction } from './user-form.js';
-import { getPictures } from './request.js';
+import { getPicturesData } from './thumbnails.js';
 
-getPictures();
+getPicturesData();
 addUserFormAction();
