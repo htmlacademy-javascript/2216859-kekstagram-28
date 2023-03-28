@@ -3,9 +3,9 @@ import { addValidator, checkValidity } from './validation.js';
 import { addScale, resetScale } from './scale.js';
 import { initSlider, resetEffects } from './effects-slider.js';
 import { sendData } from './api.js';
-import { showSuccessMessage, showErrorMessage } from './messages.js';
+import { showErrorMessage, showSuccessMessage, closeSuccessMessage, closeErrorMessage } from './messages.js';
 
-const POST_URL = 'https://28.javascript.pages.academy/kekstagram';
+const POST_URL = 'https://28.javascript.pages.academy/kekstagram1';
 const form = document.querySelector('#upload-select-image');
 const userForm = document.querySelector('.img-upload__overlay');
 const uploadFileInput = document.querySelector('#upload-file');
@@ -41,10 +41,13 @@ const unblockSubmitFormButton = () => {
 const onGetSuccess = () => {
   showSuccessMessage();
   closeForm();
+  closeSuccessMessage();
 };
 
 const onGetFail = () => {
   showErrorMessage();
+  closeErrorMessage();
+  closeForm();
 };
 
 const onAddFormSubmit = (event) => {

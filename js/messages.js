@@ -42,4 +42,4 @@ const showLoadingMessage = () => {
   document.body.appendChild(loadingMessageBlock);
 };
 
-export { showErrorMessage, showSuccessMessage, showLoadingMessage };
+export { showErrorMessage, showSuccessMessage, showLoadingMessage, closeSuccessMessage, closeErrorMessage };
