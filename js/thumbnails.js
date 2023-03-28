@@ -2,7 +2,7 @@ import { openBigPicture } from './bigpicture.js';
 import { getData } from './api.js';
 
 const GET_URL = ' https://28.javascript.pages.academy/kekstagram/data';
-const ERROR_TIMEOUT = 5000;
+const ERROR_TIMEOUT = 6000;
 const thumbnailsList = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -25,17 +25,7 @@ const renderPictures = (data) => {
 const onGetSuccess = (data) => renderPictures(data);
 const onGetFail = () => {
   const errorBlock = document.createElement('div');
-  errorBlock.style.position = 'fixed';
-  errorBlock.style.top = '0';
-  errorBlock.style.left = '0';
-  errorBlock.style.width = '100%';
-  errorBlock.style.height = '100px';
-  errorBlock.style.color = 'red';
-  errorBlock.style.backgroundColor = 'DarkRed';
-  errorBlock.style.textAlign = 'center';
-  errorBlock.style.fontWeight = 'bold';
-  errorBlock.style.fontSize = '20px';
-  errorBlock.style.padding = '40px';
+  errorBlock.classList.add('error__block');
   errorBlock.textContent = 'Произошла ошибка загрузки';
   document.body.append(errorBlock);
 
