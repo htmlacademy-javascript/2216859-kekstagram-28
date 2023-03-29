@@ -3,7 +3,7 @@ import { addValidator, checkValidity } from './validation.js';
 import { addScale, resetScale } from './scale.js';
 import { initSlider, resetEffects } from './effects-slider.js';
 import { sendData } from './api.js';
-import { showErrorMessage, showSuccessMessage, closeSuccessMessage, closeErrorMessage } from './messages.js';
+import { showFailMessage, showSuccessMessage } from './messages.js';
 
 const POST_URL = 'https://28.javascript.pages.academy/kekstagram1';
 const form = document.querySelector('#upload-select-image');
@@ -24,6 +24,9 @@ const onFormCloseButtonClick = (event) => {
 
 const onDocumentKeydown = (event) => {
   if (isEscapeKey(event) && !event.target.closest('.text__description') && !event.target.closest('.text__hashtags')) {
+    if (document.querySelector('.error')) {
+      return;
+    }
     event.preventDefault();
     closeForm();
   }
@@ -38,17 +41,16 @@ const unblockSubmitFormButton = () => {
   submitFormButton.textContent = 'Опубликовать';
 };
 
-const onGetSuccess = () => {
+const onSendSuccess = () => {
   showSuccessMessage();
   closeForm();
-  closeSuccessMessage();
 };
 
-const onGetFail = () => {
-  showErrorMessage();
-  closeErrorMessage();
-  closeForm();
+const onSendFail = () => {
+  showFailMessage();
+  unblockSubmitFormButton();
 };
+
 
 const onAddFormSubmit = (event) => {
   event.preventDefault();
@@ -56,7 +58,7 @@ const onAddFormSubmit = (event) => {
   if (isValid) {
     blockSubmitFotmButton();
     const formData = new FormData(event.target);
-    sendData(POST_URL, onGetSuccess, onGetFail, formData);
+    sendData(POST_URL, onSendSuccess, onSendFail, formData);
   }
 };
 

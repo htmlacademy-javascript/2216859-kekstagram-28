@@ -9,7 +9,7 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__error-text',
 });
 
-const preparingValue = () => hashtagInput.value.toLowerCase().trim().split(' ');
+const preparingValue = () => hashtagInput.value.toLowerCase().trim().split(' ').filter((item) => item);
 const checkArrayLength = () => preparingValue().length <= MAX_HASHTAGS;
 const checkHashtagDuplicate = () => new Set(preparingValue()).size === preparingValue().length;
 
@@ -21,7 +21,6 @@ const checkHashtagConsist = () => {
       flag = false;
     }
   });
-
   return flag;
 };
 

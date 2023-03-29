@@ -1,45 +1,48 @@
-const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+const failMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
-const loadingMessageTemplate = document.querySelector('#messages').content.querySelector('.messages');
 
-const successMessageBlock = successMessageTemplate.cloneNode(true);
-const errorMessageBlock = errorMessageTemplate.cloneNode(true);
+let failMessageClone;
+let successMessageClone;
 
-const closeErrorMessageButton = document.querySelector('.error__button');
-const closeSuccesMessageButton = document.querySelector('.success__button');
-
-const onCloseSuccesMessageButtonClick = (event) => {
-  event.preventDefault();
+const onDocumentKeydown = (event) => {
+  if (event.key === 'Escape') {
+    event.preventDefault();
+  }
+  if (failMessageClone) {
+    closeFailMessage();
+    return;
+  }
   closeSuccessMessage();
 };
 
-const onCloseErrorMessageButtonClick = (event) => {
-  event.preventDefault();
-  closeErrorMessage();
-};
+const onSuccesMessageButtonClick = () => closeSuccessMessage();
+const onFailMessageButtonClick = () => closeFailMessage();
+
 
 function closeSuccessMessage() {
-  successMessageBlock.remove();
-  closeSuccesMessageButton.removeEventListener('click', onCloseSuccesMessageButtonClick);
+  successMessageClone.remove();
+  document.removeEventListener('keydown', onDocumentKeydown);
+  successMessageClone = '';
 }
-function closeErrorMessage() {
-  errorMessageBlock.remove();
-  closeErrorMessageButton.removeEventListener('click', onCloseErrorMessageButtonClick);
+
+function closeFailMessage() {
+  failMessageClone.remove();
+  document.removeEventListener('keydown', onDocumentKeydown);
+  failMessageClone = '';
 }
 
 const showSuccessMessage = () => {
-  document.body.appendChild(successMessageBlock);
-  closeSuccesMessageButton.addEventListener('click', onCloseSuccesMessageButtonClick);
+  successMessageClone = successMessageTemplate.cloneNode(true);
+  document.body.appendChild(successMessageClone);
+  successMessageClone.querySelector('.success__button').addEventListener('click', onSuccesMessageButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const showErrorMessage = () => {
-  document.body.append(errorMessageBlock);
-  closeErrorMessageButton.addEventListener('click', onCloseErrorMessageButtonClick);
+const showFailMessage = () => {
+  failMessageClone = failMessageTemplate.cloneNode(true);
+  document.body.append(failMessageClone);
+  failMessageClone.querySelector('.error__button').addEventListener('click', onFailMessageButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const showLoadingMessage = () => {
-  const loadingMessageBlock = loadingMessageTemplate.cloneNode(true);
-  document.body.appendChild(loadingMessageBlock);
-};
-
-export { showErrorMessage, showSuccessMessage, showLoadingMessage, closeSuccessMessage, closeErrorMessage };
+export { showFailMessage, showSuccessMessage };
