@@ -1,10 +1,10 @@
-import { createPictures } from './data.js';
 import { openBigPicture } from './bigpicture.js';
+import { getData } from './api.js';
 
+const GET_URL = ' https://28.javascript.pages.academy/kekstagram/data';
+const ERROR_TIMEOUT = 6000;
 const thumbnailsList = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const pictureData = createPictures();
-
 
 const createPicture = (picture) => {
   const thumbnail = thumbnailTemplate.cloneNode(true);
@@ -18,8 +18,22 @@ const createPicture = (picture) => {
   return thumbnail;
 };
 
-const renderPictures = () => {
-  pictureData.forEach((item) => thumbnailsList.appendChild(createPicture(item)));
+const renderPictures = (data) => {
+  data.forEach((item) => thumbnailsList.appendChild(createPicture(item)));
 };
 
-export { renderPictures };
+const onGetSuccess = (data) => renderPictures(data);
+const onGetFail = () => {
+  const errorBlock = document.createElement('div');
+  errorBlock.classList.add('error__block');
+  errorBlock.textContent = 'Произошла ошибка загрузки';
+  document.body.append(errorBlock);
+
+  setTimeout(() => {
+    errorBlock.remove();
+  }, ERROR_TIMEOUT);
+};
+
+const getPicturesData = () => getData(GET_URL, onGetSuccess, onGetFail);
+
+export { getPicturesData };
