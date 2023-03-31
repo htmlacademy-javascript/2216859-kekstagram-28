@@ -26,6 +26,7 @@ const renderPictures = (data) => {
 
 const onGetSuccess = (data) => {
   renderPictures(data);
+  initFilter(data);
 };
 
 const onGetFail = () => {
