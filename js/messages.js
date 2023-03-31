@@ -15,7 +15,7 @@ const onDocumentKeydown = (event) => {
   closeSuccessMessage();
 };
 
-const onSuccesMessageButtonClick = () => closeSuccessMessage();
+const onSuccessMessageButtonClick = () => closeSuccessMessage();
 const onFailMessageButtonClick = () => closeFailMessage();
 
 
@@ -34,7 +34,7 @@ function closeFailMessage() {
 const showSuccessMessage = () => {
   successMessageClone = successMessageTemplate.cloneNode(true);
   document.body.appendChild(successMessageClone);
-  successMessageClone.querySelector('.success__button').addEventListener('click', onSuccesMessageButtonClick);
+  successMessageClone.querySelector('.success__button').addEventListener('click', onSuccessMessageButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
 };
 

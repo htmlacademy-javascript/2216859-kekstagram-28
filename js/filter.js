@@ -1,7 +1,7 @@
 import { renderPictures } from './thumbnails.js';
 import { shuffleArray, debounce } from './util.js';
 
-const RANDOM_COMMENTS_COUNT = 25;
+const RANDOM_COMMENTS_COUNT = 10;
 const RENDER_DELAY = 500;
 
 const imageFilters = document.querySelector('.img-filters');
@@ -11,16 +11,15 @@ const removeElements = (elements) => {
 };
 
 const rerenderPictures = (data, id) => {
-  const dataCopy = data.slice();
-  let sortArray = dataCopy;
+  let dataCopy = data.slice();
   removeElements(document.querySelectorAll('.picture'));
   if (id === 'filter-discussed') {
-    sortArray = dataCopy.sort((a, b) => a.comments.length - b.comments.length);
+    dataCopy = dataCopy.sort((a, b) => a.comments.length - b.comments.length);
   }
   if (id === 'filter-random') {
-    sortArray = shuffleArray(dataCopy).slice(0, RANDOM_COMMENTS_COUNT);
+    dataCopy = shuffleArray(dataCopy).slice(0, RANDOM_COMMENTS_COUNT);
   }
-  renderPictures(sortArray);
+  renderPictures(dataCopy);
 };
 
 const rerenderTimeout = debounce((data, id) => rerenderPictures(data, id), RENDER_DELAY);

@@ -32,7 +32,7 @@ const onDocumentKeydown = (event) => {
   }
 };
 
-const blockSubmitFotmButton = () => {
+const blockSubmitFormButton = () => {
   submitFormButton.disabled = true;
   submitFormButton.textContent = 'Публикую';
 };
@@ -57,7 +57,7 @@ const onAddFormSubmit = (event) => {
   event.preventDefault();
   const isValid = checkValidity();
   if (isValid) {
-    blockSubmitFotmButton();
+    blockSubmitFormButton();
     const formData = new FormData(event.target);
     sendData(POST_URL, onSendSuccess, onSendFail, formData);
   }
