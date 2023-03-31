@@ -1,5 +1,6 @@
 import { openBigPicture } from './bigpicture.js';
 import { getData } from './api.js';
+import { initFilter } from './filter.js';
 
 const GET_URL = ' https://28.javascript.pages.academy/kekstagram/data';
 const ERROR_MESSAGE = 'Произошла ошибка загрузки данных';
@@ -23,7 +24,10 @@ const renderPictures = (data) => {
   data.forEach((item) => thumbnailsList.appendChild(createPicture(item)));
 };
 
-const onGetSuccess = (data) => renderPictures(data);
+const onGetSuccess = (data) => {
+  renderPictures(data);
+};
+
 const onGetFail = () => {
   const errorBlock = document.createElement('div');
   errorBlock.classList.add('error__block');
@@ -37,4 +41,4 @@ const onGetFail = () => {
 
 const getPicturesData = () => getData(GET_URL, onGetSuccess, onGetFail);
 
-export { getPicturesData };
+export { getPicturesData, renderPictures };
