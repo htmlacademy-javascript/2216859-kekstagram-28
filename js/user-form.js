@@ -5,7 +5,7 @@ import { initSlider, resetEffects } from './effects-slider.js';
 import { sendData } from './api.js';
 import { showFailMessage, showSuccessMessage } from './messages.js';
 
-const POST_URL = 'https://28.javascript.pages.academy/kekstagram1';
+const POST_URL = 'https://28.javascript.pages.academy/kekstagram';
 const form = document.querySelector('#upload-select-image');
 const userForm = document.querySelector('.img-upload__overlay');
 const uploadFileInput = document.querySelector('#upload-file');
@@ -44,6 +44,7 @@ const unblockSubmitFormButton = () => {
 const onSendSuccess = () => {
   showSuccessMessage();
   closeForm();
+  unblockSubmitFormButton();
 };
 
 const onSendFail = () => {
