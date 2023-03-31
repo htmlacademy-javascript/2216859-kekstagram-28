@@ -1,7 +1,8 @@
 import { renderPictures } from './thumbnails.js';
-import { shuffleArray } from './util.js';
+import { shuffleArray, debounce } from './util.js';
 
 const RANDOM_COMMENTS_COUNT = 25;
+const RENDER_DELAY = 500;
 
 const imageFilters = document.querySelector('.img-filters');
 
@@ -22,12 +23,14 @@ const rerenderPictures = (data, id) => {
   renderPictures(sortArray);
 };
 
+const rerenderTimeout = debounce((data, id) => rerenderPictures(data, id), RENDER_DELAY);
+
 function onImageFiltersClick(event, data) {
   if (event.target.closest('.img-filters__button') && !event.target.closest('.img-filters__button--active')) {
     document.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
     event.target.classList.add('img-filters__button--active');
     const id = event.target.id;
-    rerenderPictures(data, id);
+    rerenderTimeout(data, id);
   }
 }
 
