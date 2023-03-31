@@ -44,6 +44,7 @@ const unblockSubmitFormButton = () => {
 const onSendSuccess = () => {
   showSuccessMessage();
   closeForm();
+  unblockSubmitFormButton();
 };
 
 const onSendFail = () => {
