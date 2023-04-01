@@ -6,8 +6,11 @@ import { sendData } from './api.js';
 import { showFailMessage, showSuccessMessage } from './messages.js';
 
 const POST_URL = 'https://28.javascript.pages.academy/kekstagram';
+const BLOCKED_BUTTON_STATE = 'Публикую';
+const UNBLOCKED_BUTTON_STATE = 'Опубликовать';
 const form = document.querySelector('#upload-select-image');
 const userForm = document.querySelector('.img-upload__overlay');
+const imagePreview = document.querySelector('.img-upload__preview img');
 const uploadFileInput = document.querySelector('#upload-file');
 const closeFormButton = document.querySelector('#upload-cancel');
 const submitFormButton = document.querySelector('#upload-submit');
@@ -15,6 +18,7 @@ const submitFormButton = document.querySelector('#upload-submit');
 const onUploadFileInputChange = (event) => {
   event.preventDefault();
   openForm();
+  imagePreview.src = URL.createObjectURL(event.target.files[0]);
 };
 
 const onFormCloseButtonClick = (event) => {
@@ -32,24 +36,20 @@ const onDocumentKeydown = (event) => {
   }
 };
 
-const blockSubmitFormButton = () => {
-  submitFormButton.disabled = true;
-  submitFormButton.textContent = 'Публикую';
-};
-const unblockSubmitFormButton = () => {
-  submitFormButton.disabled = false;
-  submitFormButton.textContent = 'Опубликовать';
+const changeSubmitFormButtonState = (state, text) => {
+  submitFormButton.disabled = state;
+  submitFormButton.textContent = text;
 };
 
 const onSendSuccess = () => {
   showSuccessMessage();
   closeForm();
-  unblockSubmitFormButton();
+  changeSubmitFormButtonState(false, UNBLOCKED_BUTTON_STATE);
 };
 
 const onSendFail = () => {
   showFailMessage();
-  unblockSubmitFormButton();
+  changeSubmitFormButtonState(false, UNBLOCKED_BUTTON_STATE);
 };
 
 
@@ -57,7 +57,7 @@ const onAddFormSubmit = (event) => {
   event.preventDefault();
   const isValid = checkValidity();
   if (isValid) {
-    blockSubmitFormButton();
+    changeSubmitFormButtonState(true, BLOCKED_BUTTON_STATE);
     const formData = new FormData(event.target);
     sendData(POST_URL, onSendSuccess, onSendFail, formData);
   }

@@ -54,11 +54,9 @@ const effectsElement = document.querySelector('.effects');
 const sliderElement = document.querySelector('.effect-level__slider');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
 const effectLevel = document.querySelector('.effect-level__value');
-
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;
 const hideSlider = () => sliderContainer.classList.add('hidden');
 const showSlider = () => sliderContainer.classList.remove('hidden');
-
 
 const updateSlider = () => {
   sliderElement.noUiSlider.updateOptions({

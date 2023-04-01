@@ -3,7 +3,7 @@ import { getData } from './api.js';
 import { initFilter } from './filter.js';
 
 const GET_URL = ' https://28.javascript.pages.academy/kekstagram/data';
-const ERROR_MESSAGE = 'Произошла ошибка загрузки данных';
+const LOAD_DATA_ERROR_MESSAGE = 'Произошла ошибка загрузки данных';
 const ERROR_TIMEOUT = 6000;
 const thumbnailsList = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -32,7 +32,7 @@ const onGetSuccess = (data) => {
 const onGetFail = () => {
   const errorBlock = document.createElement('div');
   errorBlock.classList.add('error__block');
-  errorBlock.textContent = ERROR_MESSAGE;
+  errorBlock.textContent = LOAD_DATA_ERROR_MESSAGE;
   document.body.append(errorBlock);
 
   setTimeout(() => {

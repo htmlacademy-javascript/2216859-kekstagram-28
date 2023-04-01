@@ -3,7 +3,6 @@ import { shuffleArray, debounce } from './util.js';
 
 const RANDOM_COMMENTS_COUNT = 10;
 const RENDER_DELAY = 500;
-
 const imageFilters = document.querySelector('.img-filters');
 
 const removeElements = (elements) => {
@@ -38,7 +37,6 @@ const initFilter = (data) => {
   imageFilters.addEventListener('click', (event) => {
     onImageFiltersClick(event, data);
   });
-  renderPictures(data);
 };
 
 export { initFilter };

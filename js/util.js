@@ -8,7 +8,6 @@ const shuffleArray = (array) => {
   return array;
 };
 
-
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
   return (...rest) => {
