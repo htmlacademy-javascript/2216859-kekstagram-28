@@ -1,5 +1,8 @@
 const MAX_HASHTAGS = 5;
 const HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
+const ARRAY_LENGTH_ERROR_TEXT = 'Максимальное количество хэштегов 5';
+const HASHTAG_CONSIST_ERROR_TEXT = 'Использованы недопустимые символы или неверная длина';
+const DUPLICATE_ERROR_TEXT = 'Хэштеги повторяются';
 const form = document.querySelector('.img-upload__form');
 const hashtagInput = document.querySelector('.text__hashtags');
 
@@ -25,9 +28,9 @@ const checkHashtagConsist = () => {
 };
 
 const addValidator = () => {
-  pristine.addValidator(hashtagInput, checkArrayLength, 'Максимальное количество хэштегов 5', false);
-  pristine.addValidator(hashtagInput, checkHashtagConsist, 'Использованы недопустимые символы или неверная длина', false);
-  pristine.addValidator(hashtagInput, checkHashtagDuplicate, 'Хэштеги повторяются', false);
+  pristine.addValidator(hashtagInput, checkArrayLength, ARRAY_LENGTH_ERROR_TEXT, false);
+  pristine.addValidator(hashtagInput, checkHashtagConsist, HASHTAG_CONSIST_ERROR_TEXT, false);
+  pristine.addValidator(hashtagInput, checkHashtagDuplicate, DUPLICATE_ERROR_TEXT, false);
 };
 
 const checkValidity = () => pristine.validate();
