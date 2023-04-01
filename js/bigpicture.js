@@ -8,15 +8,12 @@ const bigPictureImage = bigPicture.querySelector('.big-picture__img img');
 const pictureLikes = bigPicture.querySelector('.likes-count');
 const pictureCommentsNumber = bigPicture.querySelector('.comments-count');
 const pictureCaption = bigPicture.querySelector('.social__caption');
-
 const socialCommentsList = bigPicture.querySelector('.social__comments');
 const socialComment = socialCommentsList.querySelector('.social__comment');
-
 const commentLoaderBtn = bigPicture.querySelector('.social__comments-loader');
 const commentCount = bigPicture.querySelector('.social__comment-count');
 let shownComments = 0;
 let comments = [];
-
 
 const createComment = (data) => {
   const comment = socialComment.cloneNode(true);
