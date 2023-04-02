@@ -19,7 +19,7 @@ const checkHashtagDuplicate = () => new Set(preparingValue()).size === preparing
 const checkHashtagConsist = () => {
   let flag = true;
   const hashtagsArray = preparingValue();
-  hashtagsArray.forEach((item) => {
+  hashtagsArray.some((item) => {
     if (!HASHTAG.test(item)) {
       flag = false;
     }
@@ -28,9 +28,9 @@ const checkHashtagConsist = () => {
 };
 
 const addValidator = () => {
-  pristine.addValidator(hashtagInput, checkArrayLength, ARRAY_LENGTH_ERROR_TEXT, false);
-  pristine.addValidator(hashtagInput, checkHashtagConsist, HASHTAG_CONSIST_ERROR_TEXT, false);
-  pristine.addValidator(hashtagInput, checkHashtagDuplicate, DUPLICATE_ERROR_TEXT, false);
+  pristine.addValidator(hashtagInput, checkArrayLength, ARRAY_LENGTH_ERROR_TEXT, true);
+  pristine.addValidator(hashtagInput, checkHashtagConsist, HASHTAG_CONSIST_ERROR_TEXT, true);
+  pristine.addValidator(hashtagInput, checkHashtagDuplicate, DUPLICATE_ERROR_TEXT, true);
 };
 
 const checkValidity = () => pristine.validate();
