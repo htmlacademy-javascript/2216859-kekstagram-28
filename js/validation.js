@@ -17,14 +17,8 @@ const checkArrayLength = () => preparingValue().length <= MAX_HASHTAGS;
 const checkHashtagDuplicate = () => new Set(preparingValue()).size === preparingValue().length;
 
 const checkHashtagConsist = () => {
-  let flag = true;
   const hashtagsArray = preparingValue();
-  hashtagsArray.some((item) => {
-    if (!HASHTAG.test(item)) {
-      flag = false;
-    }
-  });
-  return flag;
+  return hashtagsArray.every((item) => HASHTAG.test(item));
 };
 
 const addValidator = () => {
