@@ -20,6 +20,9 @@ const sendData = (url, onSuccess, onFail, body) => {
       } else {
         onFail();
       }
+    })
+    .catch(() => {
+      onFail();
     });
 };
 export { getData, sendData };
